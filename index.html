@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="id">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Profil Saya</title>
+    <meta name="description" content="Satu halaman berisi semua tautan saya" />
+    <meta property="og:title" content="Profil Saya" />
+    <meta property="og:description" content="Satu halaman berisi semua tautan saya" />
+    <meta property="og:type" content="website" />
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <video class="bg-video" autoplay muted loop playsinline preload="auto" aria-hidden="true">
+      <source src="bg.mp4" type="video/mp4" />
+    </video>
+    <audio id="bgAudio" src="bg.mp3" loop preload="auto" playsinline></audio>
+    <div class="particles" id="particles"></div>
+    <div class="qr-modal" id="qrModal">
+      <div class="qr-content">
+        <button class="close-qr" id="closeQr">&times;</button>
+        <h3>Scan QR Code</h3>
+        <div class="qr-code" id="qrCode">QR Code akan muncul di sini</div>
+        <p>Scan untuk membuka profil ini</p>
+      </div>
+    </div>
+    <main class="card">
+      <section class="profile">
+        <div class="avatar" aria-hidden="true"><img src="1.png" alt="Avatar" /></div>
+        <div>
+          <div id="profileName" class="name">cobacoba aja</div>
+          <div id="profileBio" class="bio">Bio singkat tentang kamu.</div>
+        </div>
+        <button id="toggleTheme" class="btn theme-toggle" type="button" aria-label="Ganti tema tampilan" aria-pressed="false">
+          <svg class="sun" viewBox="0 0 24 24" aria-hidden="true">
+            <circle cx="12" cy="12" r="5" fill="currentColor" />
+            <g class="rays" stroke="currentColor" stroke-width="2" stroke-linecap="round" fill="none">
+              <line x1="12" y1="1.5" x2="12" y2="4.5" />
+              <line x1="12" y1="19.5" x2="12" y2="22.5" />
+              <line x1="1.5" y1="12" x2="4.5" y2="12" />
+              <line x1="19.5" y1="12" x2="22.5" y2="12" />
+              <line x1="4.2" y1="4.2" x2="6.3" y2="6.3" />
+              <line x1="17.7" y1="17.7" x2="19.8" y2="19.8" />
+              <line x1="4.2" y1="19.8" x2="6.3" y2="17.7" />
+              <line x1="17.7" y1="6.3" x2="19.8" y2="4.2" />
+            </g>
+          </svg>
+          <svg class="moon" viewBox="0 0 24 24" aria-hidden="true">
+            <path fill="currentColor" d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79Z" />
+          </svg>
+          <span class="sr-only">Toggle tema</span>
+        </button>
+      </section>
+
+      <nav id="links" class="links" role="list"></nav>
+
+      <div class="toolbar">
+        <div>Tarik untuk urutkan (drag & drop)</div>
+        <div class="counts" id="counts"></div>
+        <div class="actions">
+          <button id="shareBtn" class="action-btn" title="Bagikan profil">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor">
+              <path
+                d="M18 16.08c-.76 0-1.44.3-1.96.77L8.91 12.7c.05-.23.09-.46.09-.7s-.04-.47-.09-.7l7.05-4.11c.54.5 1.25.81 2.04.81 1.66 0 3-1.34 3-3s-1.34-3-3-3-3 1.34-3 3c0 .24.04.47.09.7L8.04 9.81C7.5 9.31 6.79 9 6 9c-1.66 0-3 1.34-3 3s1.34 3 3 3c.79 0 1.5-.31 2.04-.81l7.12 4.16c-.05.21-.08.43-.08.65 0 1.61 1.31 2.92 2.92 2.92s2.92-1.31 2.92-2.92-1.31-2.92-2.92-2.92z"
+              />
+            </svg>
+          </button>
+          <button id="qrBtn" class="action-btn" title="QR Code">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor">
+              <path d="M3 11h8V3H3v8zm2-6h4v4H5V5zm8-2v8h8V3h-8zm6 6h-4V5h4v4zM3 21h8v-8H3v8zm2-6h4v4H5v-4zm13-2h-2v3h-3v2h3v3h2v-3h3v-2h-3z" />
+            </svg>
+          </button>
+          <button id="copyBtn" class="action-btn" title="Salin link">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor">
+              <path d="M16 1H4c-1.1 0-2 .9-2 2v14h2V3h12V1zm3 4H8c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h11c1.1 0 2-.9 2-2V7c0-1.1-.9-2-2-2zm0 16H8V7h11v14z" />
+            </svg>
+          </button>
+        </div>
+      </div>
+    </main>
+
+    <script src="script.js" defer></script>
+  </body>
+</html>

@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="id">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Test Edit Function</title>
+    <style>
+      body {
+        font-family: Arial, sans-serif;
+        padding: 20px;
+        background: #0f172a;
+        color: #e5e7eb;
+      }
+      .test-element {
+        padding: 10px;
+        margin: 10px 0;
+        border: 1px solid #ffffff1a;
+        border-radius: 8px;
+        cursor: pointer;
+        transition: all 0.2s ease;
+      }
+      .test-element:hover {
+        background: #1f2937;
+        border-color: #22c55e;
+      }
+      input {
+        background: transparent;
+        border: none;
+        outline: none;
+        color: inherit;
+        font-size: inherit;
+        font-family: inherit;
+        width: 100%;
+        border-bottom: 2px solid #22c55e;
+      }
+    </style>
+  </head>
+  <body>
+    <h1>Test Edit Function</h1>
+    <div id="testName" class="test-element">Double click untuk edit nama</div>
+    <div id="testBio" class="test-element">Double click untuk edit bio</div>
+
+    <script>
+      const state = {
+        testName: 'Double click untuk edit nama',
+        testBio: 'Double click untuk edit bio',
+      };
+
+      function makeEditable(el, key) {
+        if (!el) return;
+        el.setAttribute('tabindex', '0');
+        el.title = 'Double click untuk edit';
+
+        const startEdit = () => {
+          const current = state[key];
+          const input = document.createElement('input');
+          input.type = 'text';
+          input.value = current;
+          input.style.cssText = `
+                    width: 100%;
+                    background: transparent;
+                    border: none;
+                    outline: none;
+                    color: inherit;
+                    font-size: inherit;
+                    font-family: inherit;
+                    padding: 0;
+                    margin: 0;
+                    border-bottom: 2px solid #22c55e;
+                `;
+
+          const originalContent = el.innerHTML;
+          el.innerHTML = '';
+          el.appendChild(input);
+          input.focus();
+          input.select();
+
+          const finish = () => {
+            const newValue = input.value.trim();
+            if (newValue && newValue !== current) {
+              state[key] = newValue;
+              el.textContent = newValue;
+              alert(`${key === 'testName' ? 'Nama' : 'Bio'} berhasil diubah!`);
+            } else {
+              el.innerHTML = originalContent;
+            }
+            makeEditable(el, key);
+          };
+
+          const cancel = () => {
+            el.innerHTML = originalContent;
+            makeEditable(el, key);
+          };
+
+          input.addEventListener('keydown', (e) => {
+            if (e.key === 'Enter') {
+              e.preventDefault();
+              finish();
+            }
+            if (e.key === 'Escape') {
+              e.preventDefault();
+              cancel();
+            }
+          });
+
+          input.addEventListener('blur', finish);
+          el.removeEventListener('dblclick', startEdit);
+        };
+
+        el.addEventListener('dblclick', startEdit);
+        el.addEventListener('keydown', (e) => {
+          if (e.key === 'Enter' && document.activeElement === el) {
+            e.preventDefault();
+            startEdit();
+          }
+        });
+      }
+
+      // Test the function
+      const testNameEl = document.getElementById('testName');
+      const testBioEl = document.getElementById('testBio');
+
+      if (testNameEl) makeEditable(testNameEl, 'testName');
+      if (testBioEl) makeEditable(testBioEl, 'testBio');
+    </script>
+  </body>
+</html>
